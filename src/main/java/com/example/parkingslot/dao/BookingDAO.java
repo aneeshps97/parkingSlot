@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface BookingDAO extends JpaRepository<Booking,Integer> {
-    Optional<Object> findByUserIdAndDate(int userId, String date);
-    List<Booking> findByUserId(int userId);
-    List<Booking> findByUserIdIsNull();
+    Optional<Booking> findByUserIdAndDateAndPId(Integer userId, String date, Integer pId);
+    List<Booking> findByUserIdAndPId(int userId,Integer pId);
+    List<Booking> findByUserIdIsNullAndPId(Integer pId);
 }
