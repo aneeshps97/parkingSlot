@@ -14,23 +14,23 @@ import java.util.List;
 public class BookingServiceImpl implements BookingService {
     BookingDAO bookingDAO;
     @Override
-    public Booking findByUserIdAndDate(int userId, String date) {
-        return (Booking) bookingDAO.findByUserIdAndDate(userId, date)
-                .orElseThrow(() -> new EntityNotFoundException("Slot not found for user " + userId + " on " + date));
+    public Booking findByUserIdAndDate(int userId, String date, int pId) {
+        return (Booking) bookingDAO.findByUserIdAndDateAndPId(userId, date,pId)
+                .orElseThrow(() -> new EntityNotFoundException("Slot not found for user " + userId + " on " + date +"in"+pId));
     }
 
     @Override
-    public List<Booking> findByUserId(int userId) throws Exception {
-        List<Booking> bookings = bookingDAO.findByUserId(userId);
+    public List<Booking> findSlotsByUserIdAndPId(int userId,int pId) throws Exception {
+        List<Booking> bookings = bookingDAO.findByUserIdAndPId(userId,pId);
         if (bookings.isEmpty()) {
-            throw new Exception("No slots found for user " + userId);
+            throw new Exception("No slots found for user " + userId+" pId :"+pId);
         }
         return bookings;
     }
 
     @Override
-    public List<Booking> findByUserIdIsNull() throws Exception {
-        List<Booking> unclaimedBookings = bookingDAO.findByUserIdIsNull();
+    public List<Booking> findByUserIdIsNullAndPId(int pId) throws Exception {
+        List<Booking> unclaimedBookings = bookingDAO.findByUserIdIsNullAndPId(pId);
         return unclaimedBookings;
 
     }
@@ -51,6 +51,13 @@ public class BookingServiceImpl implements BookingService {
         booking.setUserId(userId);  // free the slot
         return bookingDAO.save(booking);
     }
+
+    @Override
+    public Booking assignSlotsToUser(Booking booking) throws Exception {
+        return bookingDAO.save(booking);
+    }
+
+
 
 
 }

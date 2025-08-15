@@ -5,9 +5,7 @@ import com.example.parkingslot.service.BookingService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,28 +15,32 @@ public class BookingController {
     static  final Logger logger = LoggerFactory.getLogger(BookingController.class);
     BookingService bookingService;
     @GetMapping("/findSlot")
-    public Booking findSlotByUserIdAndDate(
+    public Booking findSlotByUserIdAndDateAndPId(
             @RequestParam int userId,
-            @RequestParam String date
+            @RequestParam String date,
+            @RequestParam int pId
     ) throws Exception {
         Booking booking = null;
-        booking = bookingService.findByUserIdAndDate(userId,date);
+        booking = bookingService.findByUserIdAndDate(userId,date,pId);
         return booking;
     }
 
     @GetMapping("/findSlots")
     public List<Booking> findSlotsByUserId(
-            @RequestParam int userId
+            @RequestParam int userId,
+            @RequestParam int pId
     ) throws Exception {
        List<Booking> bookings = null;
-        bookings = bookingService.findByUserId(userId);
+        bookings = bookingService.findSlotsByUserIdAndPId(userId,pId);
         return bookings;
     }
 
     @GetMapping("/freeSlots")
-    public List<Booking> findFreeSlots() throws Exception {
+    public List<Booking> findFreeSlotsByPId(
+            @RequestParam int pId
+    ) throws Exception {
         List<Booking> bookings = null;
-        bookings = bookingService.findByUserIdIsNull();
+        bookings = bookingService.findByUserIdIsNullAndPId(pId);
         return bookings;
     }
 
@@ -58,6 +60,14 @@ public class BookingController {
     ) throws Exception {
         Booking booking = null;
         booking = bookingService.releaseSlot(slotId);
+        return booking;
+    }
+
+    @PostMapping("/assignSlotsToUser")
+    public Booking assignSlotsToUser(@RequestBody Booking booking
+    ) throws Exception {
+        logger.info("assigning slots to user ::{}",booking.toString());
+        booking = bookingService.assignSlotsToUser(booking);
         return booking;
     }
 

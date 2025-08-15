@@ -20,5 +20,18 @@ public class Booking {
     @Column
     String slotNo;
     @Column
+    Integer PId;
+    @Column
     String date;
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", slotNo='" + slotNo + '\'' +
+                ", PId=" + PId +
+                ", date='" + date + '\'' +
+                '}';
+    }
+
 }
