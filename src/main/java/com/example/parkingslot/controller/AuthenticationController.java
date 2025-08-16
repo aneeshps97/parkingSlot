@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
     static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
     UserService userService;
-
-    @CrossOrigin(origins = "*")
     @PostMapping("/signUp")
     public User signUp(@RequestBody SignUpRequest request) {
         User user =null;
