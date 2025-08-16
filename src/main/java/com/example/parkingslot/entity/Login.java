@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 @Setter
-public class SignUpRequest {
-    private String name;
+public class Login {
     private String email;
     private String password;
 }

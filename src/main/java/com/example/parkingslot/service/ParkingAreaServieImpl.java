@@ -1,9 +1,9 @@
 package com.example.parkingslot.service;
 
-import com.example.parkingslot.dao.ParkingAreaDao;
-import com.example.parkingslot.dao.ParkingAreaSlotsDAO;
-import com.example.parkingslot.dao.ParkingAreaUserDAO;
-import com.example.parkingslot.entity.ParkingArea;
+import com.example.parkingslot.repository.ParkingLotRepository;
+import com.example.parkingslot.repository.ParkingLotSlotsRepository;
+import com.example.parkingslot.repository.ParkingLotUserDAO;
+import com.example.parkingslot.entity.ParkingLot;
 import com.example.parkingslot.entity.ParkingAreaSlots;
 import com.example.parkingslot.entity.ParkingAreaUser;
 import lombok.AllArgsConstructor;
@@ -15,32 +15,32 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class ParkingAreaServieImpl implements ParkingAreaService{
-    ParkingAreaDao parkingAreaDao;
-    ParkingAreaSlotsDAO parkingAreaSlotsDAO;
-    ParkingAreaUserDAO parkingAreaUserDAO;
+    ParkingLotRepository parkingLotRepository;
+    ParkingLotSlotsRepository parkingLotSlotsRepository;
+    ParkingLotUserDAO parkingLotUserDAO;
     @Override
-    public ParkingArea createParkingArea(ParkingArea parkingArea) throws Exception {
-        return parkingAreaDao.save(parkingArea);
+    public ParkingLot createParkingArea(ParkingLot parkingLot) throws Exception {
+        return parkingLotRepository.save(parkingLot);
     }
 
     @Override
     public ParkingAreaSlots addSlotsToParkingArea(ParkingAreaSlots parkingAreaSlots) throws Exception {
-        return parkingAreaSlotsDAO.save(parkingAreaSlots);
+        return parkingLotSlotsRepository.save(parkingAreaSlots);
     }
 
     @Override
     public ParkingAreaUser addUsersToParkingArea(ParkingAreaUser parkingAreaUser) throws Exception {
-        return parkingAreaUserDAO.save(parkingAreaUser);
+        return parkingLotUserDAO.save(parkingAreaUser);
     }
 
 
     @Override
-    public List<ParkingArea> findParkingAreaByUser(int user_id) throws Exception{
-        List<ParkingAreaUser> links = parkingAreaUserDAO.findByUserId(user_id);
+    public List<ParkingLot> findParkingAreaByUser(int user_id) throws Exception{
+        List<ParkingAreaUser> links = parkingLotUserDAO.findByUserId(user_id);
         List<Integer> parkingIds = links.stream()
                 .map(ParkingAreaUser::getPid)
                 .collect(Collectors.toList());
-        List<ParkingArea> parkingAreasOfUser = parkingAreaDao.findAllById(parkingIds);
+        List<ParkingLot> parkingAreasOfUser = parkingLotRepository.findAllById(parkingIds);
         return parkingAreasOfUser;
     }
 }

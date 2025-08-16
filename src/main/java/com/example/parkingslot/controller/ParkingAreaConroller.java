@@ -1,6 +1,6 @@
 package com.example.parkingslot.controller;
 
-import com.example.parkingslot.entity.ParkingArea;
+import com.example.parkingslot.entity.ParkingLot;
 import com.example.parkingslot.entity.ParkingAreaSlots;
 import com.example.parkingslot.entity.ParkingAreaUser;
 import com.example.parkingslot.service.ParkingAreaService;
@@ -20,9 +20,9 @@ public class ParkingAreaConroller {
     ParkingAreaService parkingAreaService;
 
     @PostMapping("/createParkingArea")
-    public ParkingArea createParkingAea(@RequestBody ParkingArea parkingArea) throws Exception {
-        parkingArea = parkingAreaService.createParkingArea(parkingArea);
-        return parkingArea;
+    public ParkingLot createParkingAea(@RequestBody ParkingLot parkingLot) throws Exception {
+        parkingLot = parkingAreaService.createParkingArea(parkingLot);
+        return parkingLot;
     }
 
   @PostMapping("/addUserToParkingArea")
@@ -38,10 +38,10 @@ public class ParkingAreaConroller {
     }
 
    @GetMapping("/findParkingAreaAssignedToUser")
-    public List<ParkingArea> findParkingAreaOfUser(
+    public List<ParkingLot> findParkingAreaOfUser(
             @RequestParam int userId
     ) throws Exception {
-        List<ParkingArea> parkingAreasOfUser = parkingAreaService.findParkingAreaByUser(userId);
+        List<ParkingLot> parkingAreasOfUser = parkingAreaService.findParkingAreaByUser(userId);
         return  parkingAreasOfUser;
     }
 

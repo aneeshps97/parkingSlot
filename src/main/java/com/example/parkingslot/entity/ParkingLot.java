@@ -8,7 +8,7 @@ import lombok.Setter;
 @Table(name = "parking_area")
 @Getter
 @Setter
-public class ParkingArea {
+public class ParkingLot {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     int p_id;
