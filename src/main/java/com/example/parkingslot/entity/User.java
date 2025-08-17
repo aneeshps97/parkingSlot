@@ -1,21 +1,22 @@
 package com.example.parkingslot.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Entity
-@Table(name = "user",
-        uniqueConstraints = {
+@Table(uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
 })
 @Getter
 @Setter
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer userId;
     @Column
     private String name;
     @Column
@@ -24,4 +25,7 @@ public class User {
     private String password;
     @Column
     private String userToken;
+
+    @ManyToMany(mappedBy = "users")
+    private List<ParkingArea> parkingAreas;
 }

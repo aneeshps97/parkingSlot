@@ -1,3 +1,4 @@
+/*
 package com.example.parkingslot.entity;
 
 import jakarta.persistence.*;
@@ -17,3 +18,4 @@ public class ParkingAreaSlots {
     @Column
     String s_name;
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.example.parkingslot.entity;
 
 import jakarta.persistence.*;
@@ -18,3 +19,4 @@ public class ParkingAreaUser {
     int userId;
 
 }
+*/

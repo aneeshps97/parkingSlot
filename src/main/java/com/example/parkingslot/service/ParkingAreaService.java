@@ -1,14 +1,18 @@
 package com.example.parkingslot.service;
 
-import com.example.parkingslot.entity.ParkingLot;
-import com.example.parkingslot.entity.ParkingAreaSlots;
-import com.example.parkingslot.entity.ParkingAreaUser;
+import com.example.parkingslot.entity.ParkingArea;
+//import com.example.parkingslot.entity.ParkingAreaSlots;
+//import com.example.parkingslot.entity.ParkingAreaUser;
+import com.example.parkingslot.entity.Slot;
+import com.example.parkingslot.exceptionhandler.ParkingSlotException;
 
 import java.util.List;
 
 public interface ParkingAreaService {
-    public ParkingLot createParkingArea(ParkingLot parkingLot) throws Exception;
-    public ParkingAreaSlots addSlotsToParkingArea(ParkingAreaSlots parkingAreaSlots)throws Exception;
-    public ParkingAreaUser addUsersToParkingArea(ParkingAreaUser parkingAreaUser) throws Exception;
-    public List<ParkingLot> findParkingAreaByUser(int user_id)throws Exception;
+    public ParkingArea createParkingArea(ParkingArea parkingArea) throws ParkingSlotException;
+    public ParkingArea addSlotsToParkingArea(int parkingAreaId,List<Slot> slots) throws ParkingSlotException;
+
+   //public ParkingAreaSlots addSlotsToParkingArea(ParkingAreaSlots parkingAreaSlots)throws Exception;
+    //public ParkingAreaUser addUsersToParkingArea(ParkingAreaUser parkingAreaUser) throws Exception;
+   // public List<ParkingArea> findParkingAreaByUser(int user_id)throws Exception;
 }
