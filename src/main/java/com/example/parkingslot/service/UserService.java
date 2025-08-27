@@ -12,4 +12,5 @@ public interface UserService {
     public User getUserToken(User user) throws Exception;
     public User findByEmail(String email) throws ParkingSlotException;
     public User authenticateUser(Login request) throws ParkingSlotException;
+    public User findById(int userId) throws ParkingSlotException;
 }

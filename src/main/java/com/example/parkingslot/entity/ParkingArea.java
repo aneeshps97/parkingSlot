@@ -1,5 +1,6 @@
 package com.example.parkingslot.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -24,13 +25,23 @@ public class ParkingArea {
     @OneToMany(mappedBy = "parkingArea", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Slot> slots;
-
     @ManyToMany
     @JoinTable(
             name = "parkingarea_user",
             joinColumns = @JoinColumn(name = "parking_area_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    @JsonIgnoreProperties("parkingAreas")
     private List<User> users;
 
+    @Override
+    public String toString() {
+        return "ParkingArea{" +
+                "parkingAreaId=" + parkingAreaId +
+                ", name='" + name + '\'' +
+                ", adminId=" + adminId +
+                ", slots=" + slots +
+                ", users=" + users +
+                '}';
+    }
 }

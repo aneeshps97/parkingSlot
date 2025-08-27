@@ -62,4 +62,9 @@ public class UserServiceImpl implements UserService{
             return user;
         else throw new ParkingSlotException(StatusCodes.WRONG_PASSWORD);
     }
+
+    @Override
+    public User findById(int userId) throws ParkingSlotException {
+        return userRepository.findById(userId).orElseThrow(()->new ParkingSlotException(StatusCodes.USER_NOT_FOUND));
+    }
 }

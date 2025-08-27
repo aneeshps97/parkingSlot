@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
         response.setStatusCode(e.getErrorCode());
         response.setStatus(StatusCodes.FAIL);
         response.setMessage(statusCodeService.getMessageForCode(e.getErrorCode()));
-        return new ResponseEntity<Response<T>>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Response<T>>(response, HttpStatus.OK);
     }
 
    @ExceptionHandler(Exception.class)

@@ -22,6 +22,13 @@ public class ParkingAreaConroller {
     ParkingAreaService parkingAreaService;
     GenerateResponse generateResponse;
 
+    @GetMapping("/parkingArea/viewParkingArea")
+    public ResponseEntity<Response<ParkingArea>> viewParkingArea(@RequestParam int parkingAreaId) throws ParkingSlotException {
+        logger.info("Request received for finding parking area ::{}",parkingAreaId);
+        ParkingArea parkingArea = parkingAreaService.findParkingAreaById(parkingAreaId);
+        return generateResponse.formatResponse(StatusCodes.PARKING_AREA_CREATED_SUCCESSFULLY,StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
+    }
+
     @PostMapping("/parkingArea/createParkingArea")
     public ResponseEntity<Response<ParkingArea>> createParkingArea(@RequestBody ParkingArea request) throws ParkingSlotException {
         logger.info("Request received for creating parking area ::{}",request);
@@ -35,6 +42,16 @@ public class ParkingAreaConroller {
         ParkingArea parkingArea=parkingAreaService.addSlotsToParkingArea(id,slots);
         return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_ADDED_SLOTS_TO_PARKING_AREA,StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
     }
+
+    @PutMapping("/parkingArea/{id}/addUsers")
+    public ResponseEntity<Response<ParkingArea>> addUsersToParkingArea(@PathVariable int id, @RequestBody List<Integer> userIds){
+        logger.info("Request received for adding usersTo parking area ::{}",userIds);
+        ParkingArea parkingArea=parkingAreaService.addUsersToParkingArea(id,userIds);
+        logger.info("this is the parking area response"+parkingArea.toString());
+        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_ADDED_USER_TO_PARKING_AREA,StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
+    }
+
+
 
     /*@PutMapping("/parkingArea/{id}/assignUsers")
     public ResponseEntity<Response<ParkingArea>> assignUsers(@PathVariable Long id, @RequestBody List<User> users){
