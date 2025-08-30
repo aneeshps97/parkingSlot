@@ -97,6 +97,8 @@ public class BookingServiceImpl implements BookingService {
             booking.setUser(user);
             booking = bookingRepository.save(booking);
             bookings.add(booking);
+            slot.getBookings().add(booking);  // modify the existing collection
+            slotRepository.save(slot);
         }catch (Exception e){
             throw new ParkingSlotException(StatusCodes.ASSIGNING_SLOT_TO_USER_FAILED);
         }

@@ -60,7 +60,7 @@ public class BookingController {
         return generateResponse.formatResponse(StatusCodes.FOUND_FREE_SLOT, StatusCodes.SUCCESS, bookings,HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/booking/ ")
+    @PutMapping("/booking/bookSlotForUser")
     public ResponseEntity<Response<List<Booking>>> bookSlotForUser(
             @RequestParam int userId,
             @RequestParam int bookingId

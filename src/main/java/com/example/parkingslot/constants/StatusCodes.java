@@ -30,4 +30,8 @@ public final class StatusCodes {
     public static final int FOUND_FREE_SLOT = 120;
     public static final int UNABLE_TO_BOOK_SLOT = 121;
     public static final int BOOKED_FREE_SLOT = 122;
+    public static final int UNABLE_TO_UPDATE_PARKING_AREA_NAME = 113;
+    public static final int SUCCESSFULLY_CHANGED_NAME_OF_PARKING_AREA = 114;
+    public static final int PARKING_SLOT_DELETED_SUCCESSFULLY = 115;
+    public static final int PARKING_SLOT_UPDATED_SUCCESSFULLY = 116;
 }

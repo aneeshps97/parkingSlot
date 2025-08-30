@@ -81,25 +81,15 @@ public class ParkingAreaServieImpl implements ParkingAreaService{
         return parkingAreaRepository.findById(parkingAreaId).orElseThrow(()->new ParkingSlotException(StatusCodes.UNABLE_TO_FIND_PARKING_AREA));
     }
 
+    @Override
+    public ParkingArea updateNameOfParkingArea(int parkingAreaId, String newName) throws ParkingSlotException {
+        ParkingArea parkingArea = parkingAreaRepository.findById(parkingAreaId).orElseThrow(()->new ParkingSlotException(StatusCodes.UNABLE_TO_FIND_PARKING_AREA));
+        try {
+            parkingArea.setName(newName);
+        }catch (Exception e){
+            throw new ParkingSlotException(StatusCodes.UNABLE_TO_UPDATE_PARKING_AREA_NAME);
+        }
+        return parkingAreaRepository.save(parkingArea);
+    }
 
-   /* @Override
-    public ParkingAreaSlots addSlotsToParkingArea(ParkingAreaSlots parkingAreaSlots) throws Exception {
-        return parkingLotSlotsRepository.save(parkingAreaSlots);
-    }*/
-
-    /*@Override
-    public ParkingAreaUser addUsersToParkingArea(ParkingAreaUser parkingAreaUser) throws Exception {
-        return parkingLotUserDAO.save(parkingAreaUser);
-    }*/
-
-
-   /* @Override
-    public List<ParkingArea> findParkingAreaByUser(int user_id) throws Exception{
-        List<ParkingAreaUser> links = parkingLotUserDAO.findByUserId(user_id);
-        List<Integer> parkingIds = links.stream()
-                .map(ParkingAreaUser::getPid)
-                .collect(Collectors.toList());
-        List<ParkingArea> parkingAreasOfUser = parkingAreaRepository.findAllById(parkingIds);
-        return parkingAreasOfUser;
-    }*/
 }
