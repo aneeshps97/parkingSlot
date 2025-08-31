@@ -59,6 +59,14 @@ public class ParkingAreaConroller {
         return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_CHANGED_NAME_OF_PARKING_AREA,StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
     }
 
+    @PutMapping("/parkingArea/removeUserFromParkingArea/{parkingAreaId}")
+    public ResponseEntity<Response<ParkingArea>> removeUserFromParkingArea(@PathVariable int parkingAreaId,
+                                                            @RequestParam int userId){
+        logger.info("Request received for removing user from parking area id::{} userId::{}",parkingAreaId,userId);
+        ParkingArea parkingArea=parkingAreaService.removeUserFromParkingArea(parkingAreaId,userId);
+        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_CHANGED_NAME_OF_PARKING_AREA,StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
+    }
+
 
 
 

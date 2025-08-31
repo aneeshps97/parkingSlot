@@ -34,4 +34,6 @@ public final class StatusCodes {
     public static final int SUCCESSFULLY_CHANGED_NAME_OF_PARKING_AREA = 114;
     public static final int PARKING_SLOT_DELETED_SUCCESSFULLY = 115;
     public static final int PARKING_SLOT_UPDATED_SUCCESSFULLY = 116;
+    public static final int SLOT_ADDED_SUCCESSFULLY = 117;
+    public static final int UNABLE_TO_REMOVE_PARKING_AREA = 118;
 }

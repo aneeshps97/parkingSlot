@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface SlotService{
-    public Slot createSlot(Slot slot) throws Exception ;
+    public Slot createSlot(Slot slot,int ParkingAreaId) throws ParkingSlotException ;
     public void deleteSlot(int slotId) throws ParkingSlotException;
     public Slot updateSlot(int slotId, Slot slot) throws ParkingSlotException;
 }

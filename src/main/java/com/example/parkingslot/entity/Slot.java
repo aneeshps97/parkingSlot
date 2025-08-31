@@ -22,7 +22,7 @@ public class Slot {
     @Column
     String name;
     @ManyToOne
-    @JoinColumn(name = "parking_area_id", nullable = false)
+    @JoinColumn(name = "parking_area_id")
     @JsonBackReference
     private ParkingArea parkingArea;
     @OneToMany(mappedBy = "slot", cascade = CascadeType.ALL, orphanRemoval = true)

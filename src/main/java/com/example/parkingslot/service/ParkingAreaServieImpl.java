@@ -92,4 +92,17 @@ public class ParkingAreaServieImpl implements ParkingAreaService{
         return parkingAreaRepository.save(parkingArea);
     }
 
+    @Override
+    public ParkingArea removeUserFromParkingArea(int parkingAreaId, int userId) throws ParkingSlotException {
+        ParkingArea parkingArea = parkingAreaRepository.findById(parkingAreaId).orElseThrow(()->new ParkingSlotException(StatusCodes.UNABLE_TO_FIND_PARKING_AREA));
+        try {
+            List<User> users = parkingArea.getUsers();
+            users.removeIf(user -> user.getUserId().equals(userId));
+            parkingArea.setUsers(users);
+        }catch (Exception e){
+            throw new ParkingSlotException(StatusCodes.UNABLE_TO_REMOVE_PARKING_AREA);
+        }
+        return parkingAreaRepository.save(parkingArea);
+    }
+
 }

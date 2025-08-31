@@ -15,4 +15,5 @@ public interface ParkingAreaService {
     public ParkingArea addUsersToParkingArea(int ParkingAreaId, List<Integer> userIds) throws ParkingSlotException;
     public ParkingArea findParkingAreaById(int parkingAreaId) throws ParkingSlotException;
     public ParkingArea updateNameOfParkingArea(int parkingAreaId,String newName) throws ParkingSlotException;
+    public ParkingArea removeUserFromParkingArea(int parkingAreaId, int userId) throws ParkingSlotException;
 }

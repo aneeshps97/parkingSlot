@@ -1,6 +1,7 @@
 package com.example.parkingslot.controller;
 
 import com.example.parkingslot.constants.StatusCodes;
+import com.example.parkingslot.entity.ParkingArea;
 import com.example.parkingslot.entity.Slot;
 import com.example.parkingslot.response.GenerateResponse;
 import com.example.parkingslot.response.Response;
@@ -19,10 +20,10 @@ public class SlotController {
     SlotService slotService;
     static final Logger logger = LoggerFactory.getLogger(ParkingAreaConroller.class);
     GenerateResponse generateResponse;
-    @PostMapping("/createSlot")
-    public Slot addSlots(@RequestBody Slot slot) throws Exception {
-        slot = slotService.createSlot(slot);
-        return slot;
+    @PostMapping("slot/createSlot/{parkingAreaId}")
+    public ResponseEntity<Response<Slot>> addSlots(@RequestBody Slot slot,@PathVariable int parkingAreaId) throws Exception {
+        slot = slotService.createSlot(slot, parkingAreaId);
+        return generateResponse.formatResponse(StatusCodes.SLOT_ADDED_SUCCESSFULLY,StatusCodes.SUCCESS, slot, HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("slot/deleteSlot/{slotId}")
