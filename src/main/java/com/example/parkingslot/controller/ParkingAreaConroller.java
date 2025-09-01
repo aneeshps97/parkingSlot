@@ -59,6 +59,13 @@ public class ParkingAreaConroller {
         return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_CHANGED_NAME_OF_PARKING_AREA,StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
     }
 
+    @DeleteMapping("/parkingArea/deleteParkingArea/{parkingAreaId}")
+    public ResponseEntity<Response<ParkingArea>> deleteParkingArea(@PathVariable int parkingAreaId){
+        logger.info("Request received for delete parking area id::{} ",parkingAreaId);
+        ParkingArea parkingArea=parkingAreaService.deleteParkingArea(parkingAreaId);
+        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_CHANGED_NAME_OF_PARKING_AREA,StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
+    }
+
     @PutMapping("/parkingArea/removeUserFromParkingArea/{parkingAreaId}")
     public ResponseEntity<Response<ParkingArea>> removeUserFromParkingArea(@PathVariable int parkingAreaId,
                                                             @RequestParam int userId){
