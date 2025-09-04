@@ -1,10 +1,9 @@
-package com.example.parkingslot.dao;
+package com.example.parkingslot.repository;
 
 import com.example.parkingslot.entity.Slot;
-import com.example.parkingslot.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SlotDAO extends JpaRepository<Slot,Integer> {
+public interface SlotRepository extends JpaRepository<Slot,Integer> {
 }
