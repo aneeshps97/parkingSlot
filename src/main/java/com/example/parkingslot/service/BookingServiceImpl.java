@@ -84,6 +84,15 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    public List<Booking> getBookingForParkingArea(int parkingAreaId) throws ParkingSlotException {
+        List<Booking> bookings= bookingRepository.findByParkingArea_ParkingAreaId(parkingAreaId);
+        if (bookings.isEmpty()){
+            throw new ParkingSlotException(StatusCodes.UNABLE_TO_FIND_BOOKING);
+        }
+        return bookings;
+    }
+
+    @Override
     public List<Booking> assignSlotsToUser(BookingRequest bookingRequest) throws ParkingSlotException {
         List<Booking> bookings = new ArrayList<>();
         Booking booking= new Booking();
@@ -103,6 +112,15 @@ public class BookingServiceImpl implements BookingService {
             throw new ParkingSlotException(StatusCodes.ASSIGNING_SLOT_TO_USER_FAILED);
         }
        return bookings;
+    }
+
+    @Override
+    public List<Booking> removeBooking(int bookingId) throws ParkingSlotException {
+        List<Booking> bookings = new ArrayList<>();
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow(()->new ParkingSlotException(StatusCodes.UNABLE_TO_FIND_BOOKING));
+        bookingRepository.delete(booking);
+        bookings = bookingRepository.findAll();
+        return bookings;
     }
 
 }

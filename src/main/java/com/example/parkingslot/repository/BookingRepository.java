@@ -14,6 +14,7 @@ public interface BookingRepository extends JpaRepository<Booking,Integer> {
   /*  Optional<Booking> findByUserIdAndDateAndPId(Integer userId, String date, Integer pId);
     List<Booking> findByUserIdAndPId(int userId,Integer pId);
     List<Booking> findByUserIdIsNullAndPId(Integer pId);*/
+  List<Booking> findByParkingArea_ParkingAreaId(int parkingAreaId) throws ParkingSlotException;
   List<Booking> findByParkingAreaParkingAreaIdAndUserIsNull(Integer ParkingAreaId) throws ParkingSlotException;
   List<Booking> findByParkingArea_ParkingAreaIdAndUser_UserId(int parkingAreaId, int userId) throws ParkingSlotException;
   List<Booking> findByParkingArea_ParkingAreaIdAndUser_UserIdAndDate(int parkingAreaId, int userId, LocalDate date) throws ParkingSlotException;

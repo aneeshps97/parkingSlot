@@ -18,16 +18,16 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 public class BookingController {
-    static  final Logger logger = LoggerFactory.getLogger(BookingController.class);
+    static final Logger logger = LoggerFactory.getLogger(BookingController.class);
     BookingService bookingService;
     GenerateResponse generateResponse;
 
     @PostMapping("booking/assignSlotsToUser")
     public ResponseEntity<Response<List<Booking>>> assignSlotsToUser(@RequestBody BookingRequest bookingRequest
     ) throws Exception {
-        logger.info("assigning slots to user ::{}",bookingRequest.toString());
+        logger.info("assigning slots to user ::{}", bookingRequest.toString());
         List<Booking> bookings = bookingService.assignSlotsToUser(bookingRequest);
-        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_ASSIGNED_SLOT_TO_USER,StatusCodes.SUCCESS, bookings, HttpStatus.ACCEPTED);
+        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_ASSIGNED_SLOT_TO_USER, StatusCodes.SUCCESS, bookings, HttpStatus.ACCEPTED);
     }
 
 
@@ -38,7 +38,7 @@ public class BookingController {
             @RequestParam int parkingAreaId
     ) throws Exception {
         List<Booking> bookings = bookingService.getBookingByUserParkingAndDate(userId, date, parkingAreaId);
-        return generateResponse.formatResponse(StatusCodes.FOUND_BOOKING, StatusCodes.SUCCESS, bookings,HttpStatus.ACCEPTED);
+        return generateResponse.formatResponse(StatusCodes.FOUND_BOOKING, StatusCodes.SUCCESS, bookings, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("booking/by-user")
@@ -46,9 +46,18 @@ public class BookingController {
             @RequestParam int userId,
             @RequestParam int parkingAreaId
     ) throws Exception {
-       List<Booking> bookings = null;
-       bookings = bookingService.getBookingByUserForParkingArea(userId,parkingAreaId);
-       return generateResponse.formatResponse(StatusCodes.FOUND_BOOKING, StatusCodes.SUCCESS, bookings,HttpStatus.ACCEPTED);
+        List<Booking> bookings = null;
+        bookings = bookingService.getBookingByUserForParkingArea(userId, parkingAreaId);
+        return generateResponse.formatResponse(StatusCodes.FOUND_BOOKING, StatusCodes.SUCCESS, bookings, HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("booking/parkingArea")
+    public ResponseEntity<Response<List<Booking>>> getBookingForParkingArea(
+            @RequestParam int parkingAreaId
+    ) throws Exception {
+        List<Booking> bookings = null;
+        bookings = bookingService.getBookingForParkingArea(parkingAreaId);
+        return generateResponse.formatResponse(StatusCodes.FOUND_BOOKING, StatusCodes.SUCCESS, bookings, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/booking/getFreeSlots")
@@ -57,7 +66,7 @@ public class BookingController {
     ) throws Exception {
         List<Booking> bookings = null;
         bookings = bookingService.getFreeSlotsInParkingArea(parkingAreaId);
-        return generateResponse.formatResponse(StatusCodes.FOUND_FREE_SLOT, StatusCodes.SUCCESS, bookings,HttpStatus.ACCEPTED);
+        return generateResponse.formatResponse(StatusCodes.FOUND_FREE_SLOT, StatusCodes.SUCCESS, bookings, HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/booking/bookSlotForUser")
@@ -66,8 +75,8 @@ public class BookingController {
             @RequestParam int bookingId
     ) throws Exception {
         List<Booking> bookings = null;
-        bookings = bookingService.bookSlotForUser(userId,bookingId);
-        return generateResponse.formatResponse(StatusCodes.BOOKED_FREE_SLOT, StatusCodes.SUCCESS, bookings,HttpStatus.ACCEPTED);
+        bookings = bookingService.bookSlotForUser(userId, bookingId);
+        return generateResponse.formatResponse(StatusCodes.BOOKED_FREE_SLOT, StatusCodes.SUCCESS, bookings, HttpStatus.ACCEPTED);
 
     }
 
@@ -75,9 +84,21 @@ public class BookingController {
     public ResponseEntity<Response<List<Booking>>> releaseSlot(
             @RequestParam int bookingId
     ) throws Exception {
-        logger.info("releasing the booking ::{}",bookingId);
+        logger.info("releasing the booking ::{}", bookingId);
         List<Booking> bookings = bookingService.releaseSlot(bookingId);
-        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_RELEASED_ASSIGNED_SLOTS,StatusCodes.SUCCESS, bookings, HttpStatus.ACCEPTED);
+        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_RELEASED_ASSIGNED_SLOTS, StatusCodes.SUCCESS, bookings, HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/booking/removeBooking")
+    public ResponseEntity<Response<List<Booking>>> removeBooking(
+            @RequestParam int bookingId
+    ) throws Exception {
+        logger.info("Request received for deleting booking with id ::{}",bookingId
+        );
+        List<Booking> bookings = null;
+        bookings = bookingService.removeBooking(bookingId);
+        return generateResponse.formatResponse(StatusCodes.REMOVED_BOOKING, StatusCodes.SUCCESS, bookings, HttpStatus.ACCEPTED);
+
     }
 
 

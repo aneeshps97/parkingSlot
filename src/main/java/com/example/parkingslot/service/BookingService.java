@@ -14,5 +14,9 @@ public interface BookingService {
     List<Booking> releaseSlot(int userId) throws ParkingSlotException;
     List<Booking> bookSlotForUser(int userId, int bookingId) throws ParkingSlotException;
     List<Booking> getBookingByUserForParkingArea(int userId,int parkingAreaId) throws ParkingSlotException;
+    List<Booking> getBookingForParkingArea(int parkingAreaId) throws ParkingSlotException;
     List<Booking> assignSlotsToUser(BookingRequest bookingRequest) throws ParkingSlotException;
+    List<Booking> removeBooking(int bookingId) throws ParkingSlotException;
+
+
 }
