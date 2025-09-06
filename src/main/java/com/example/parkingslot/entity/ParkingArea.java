@@ -21,6 +21,10 @@ public class ParkingArea {
     @Column
     String name;
     @Column
+    String ticketLine1;
+    @Column
+    String ticketLine2;
+    @Column
     int adminId;
     @OneToMany(mappedBy = "parkingArea", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -39,6 +43,8 @@ public class ParkingArea {
         return "ParkingArea{" +
                 "parkingAreaId=" + parkingAreaId +
                 ", name='" + name + '\'' +
+                ", ticketLine1='"+ticketLine1+
+                ", ticketLine2='"+ticketLine2+
                 ", adminId=" + adminId +
                 ", slots=" + slots +
                 ", users=" + users +

@@ -37,8 +37,6 @@ public class UserServiceImpl implements UserService{
             }
             // Any other DB issue
             throw new ParkingSlotException(StatusCodes.SIGNUP_FAILED);
-        }catch (Exception e) {
-            throw new ParkingSlotException(StatusCodes.SIGNUP_FAILED);
         }
         return user;
     }
