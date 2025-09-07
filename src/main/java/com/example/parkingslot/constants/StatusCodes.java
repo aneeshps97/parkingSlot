@@ -33,7 +33,7 @@ public final class StatusCodes {
     public static final int PARKING_SLOT_DELETED_SUCCESSFULLY = 125;
     public static final int PARKING_SLOT_UPDATED_SUCCESSFULLY = 126;
     public static final int SLOT_ADDED_SUCCESSFULLY = 127;
-    public static final int UNABLE_TO_REMOVE_PARKING_AREA = 128;
+    public static final int UNABLE_TO_REMOVE_USER_FROM_PARKING_AREA = 128;
     public static final int UNABLE_TO_DELETE_PARKING_AREA = 129;
     public static final int REMOVED_BOOKING = 130;
     public static final int UNABLE_TO_ADD_NEW_STATUS_CODE = 131;

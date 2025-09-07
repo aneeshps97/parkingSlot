@@ -102,7 +102,7 @@ public class ParkingAreaServieImpl implements ParkingAreaService{
             users.removeIf(user -> user.getUserId().equals(userId));
             parkingArea.setUsers(users);
         }catch (Exception e){
-            throw new ParkingSlotException(StatusCodes.UNABLE_TO_REMOVE_PARKING_AREA);
+            throw new ParkingSlotException(StatusCodes.UNABLE_TO_REMOVE_USER_FROM_PARKING_AREA);
         }
         return parkingAreaRepository.save(parkingArea);
     }
