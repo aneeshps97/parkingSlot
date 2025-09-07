@@ -38,4 +38,13 @@ public final class StatusCodes {
     public static final int UNABLE_TO_REMOVE_PARKING_AREA = 118;
     public static final int UNABLE_TO_DELETE_PARKING_AREA = 119;
     public static final int REMOVED_BOOKING = 120;
+    public static final int UNABLE_TO_ADD_NEW_STATUS_CODE = 121;
+    public static final int STATUS_CODE_ADDED_SUCCESSFULLY = 122;
+    public static final int UNABLE_TO_FETCH_STATUS_CODES = 123;
+    public static final int FETCHING_STATUS_CODES_SUCCESS = 124;
+    public static final int UNABLE_TO_DELETE_STATUS_CODES = 125;
+    public static final int STATUS_CODE_DELETED_SUCCESSFULLY = 126;
+    public static final int UNABLE_TO_UPDATE_STATUS_CODES = 127;
+    public static final int STATUS_CODE_UPDATE_SUCCESS = 128;
+    public static final int UNABLE_TO_FIND_STATUS_CODE = 129;
 }
