@@ -52,20 +52,20 @@ public class ParkingAreaConroller {
     }
 
     @PutMapping("/parkingArea/updateBasicDetails/{id}")
-    public ResponseEntity<Response<ParkingArea>> updateName(@PathVariable int id,
+    public ResponseEntity<Response<ParkingArea>> updateBasicDetails(@PathVariable int id,
                                                             @RequestParam String newName,
                                                             @RequestParam String newTicketLine1,
                                                             @RequestParam String newTicketLine2) {
-        logger.info("Request received for changing basic details for parking area id::{} name::{}", id, newName,newTicketLine1,newTicketLine2);
-        ParkingArea parkingArea = parkingAreaService.updateNameOfParkingArea(id, newName,newTicketLine1,newTicketLine2);
-        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_CHANGED_NAME_OF_PARKING_AREA, StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
+        logger.info("Request received for changing basic details for parking area id::{} name::{} ticketLine1::{} ticketLine2:{}", id, newName,newTicketLine1,newTicketLine2);
+        ParkingArea parkingArea = parkingAreaService.updateBasicDetailsOfParkingArea(id, newName,newTicketLine1,newTicketLine2);
+        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_CHANGED_BASIC_DETAILS_OF_PARKING_AREA, StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/parkingArea/deleteParkingArea/{parkingAreaId}")
     public ResponseEntity<Response<ParkingArea>> deleteParkingArea(@PathVariable int parkingAreaId) {
         logger.info("Request received for delete parking area id::{} ", parkingAreaId);
         ParkingArea parkingArea = parkingAreaService.deleteParkingArea(parkingAreaId);
-        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_CHANGED_NAME_OF_PARKING_AREA, StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
+        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_CHANGED_BASIC_DETAILS_OF_PARKING_AREA, StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/parkingArea/removeUserFromParkingArea/{parkingAreaId}")
@@ -73,7 +73,7 @@ public class ParkingAreaConroller {
                                                                            @RequestParam int userId) {
         logger.info("Request received for removing user from parking area id::{} userId::{}", parkingAreaId, userId);
         ParkingArea parkingArea = parkingAreaService.removeUserFromParkingArea(parkingAreaId, userId);
-        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_CHANGED_NAME_OF_PARKING_AREA, StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
+        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_CHANGED_BASIC_DETAILS_OF_PARKING_AREA, StatusCodes.SUCCESS, parkingArea, HttpStatus.ACCEPTED);
     }
 
 

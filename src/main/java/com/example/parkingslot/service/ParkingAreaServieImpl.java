@@ -82,14 +82,14 @@ public class ParkingAreaServieImpl implements ParkingAreaService{
     }
 
     @Override
-    public ParkingArea updateNameOfParkingArea(int parkingAreaId, String newName,String newTicketLine1,String newTicketLine2) throws ParkingSlotException {
+    public ParkingArea updateBasicDetailsOfParkingArea(int parkingAreaId, String newName, String newTicketLine1, String newTicketLine2) throws ParkingSlotException {
         ParkingArea parkingArea = parkingAreaRepository.findById(parkingAreaId).orElseThrow(()->new ParkingSlotException(StatusCodes.UNABLE_TO_FIND_PARKING_AREA));
         try {
             parkingArea.setName(newName);
             parkingArea.setTicketLine1(newTicketLine1);
             parkingArea.setTicketLine2(newTicketLine2);
         }catch (Exception e){
-            throw new ParkingSlotException(StatusCodes.UNABLE_TO_UPDATE_PARKING_AREA_NAME);
+            throw new ParkingSlotException(StatusCodes.UNABLE_TO_UPDATE_PARKING_AREA_BASIC_DETAILS);
         }
         return parkingAreaRepository.save(parkingArea);
     }
