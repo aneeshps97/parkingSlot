@@ -22,6 +22,13 @@ public class ParkingAreaConroller {
     ParkingAreaService parkingAreaService;
     GenerateResponse generateResponse;
 
+    @PutMapping("/parkingArea/changeAdmin/{parkingAreaId}")
+    public ResponseEntity<Response<ParkingArea>> changeAdmin(@PathVariable int parkingAreaId,@RequestParam int newAdminId) throws  ParkingSlotException{
+        logger.info("Request received for changing the admin of parking area ::{} newAdminId::{}",parkingAreaId,newAdminId);
+        ParkingArea parkingArea = parkingAreaService.changeAdmin(parkingAreaId,newAdminId);
+        return generateResponse.formatResponse(StatusCodes.CHANGING_ADMIN_SUCCESS,StatusCodes.SUCCESS,parkingArea,HttpStatus.ACCEPTED);
+    }
+
     @GetMapping("/parkingArea/viewParkingArea")
     public ResponseEntity<Response<ParkingArea>> viewParkingArea(@RequestParam int parkingAreaId) throws ParkingSlotException {
         logger.info("Request received for finding parking area ::{}", parkingAreaId);

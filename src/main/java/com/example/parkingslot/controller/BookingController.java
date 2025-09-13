@@ -1,6 +1,7 @@
 package com.example.parkingslot.controller;
 
 import com.example.parkingslot.constants.StatusCodes;
+import com.example.parkingslot.entity.AutoAssignRequest;
 import com.example.parkingslot.entity.Booking;
 import com.example.parkingslot.entity.BookingRequest;
 import com.example.parkingslot.response.GenerateResponse;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
 import java.util.List;
 
 @RestController
@@ -21,6 +23,13 @@ public class BookingController {
     static final Logger logger = LoggerFactory.getLogger(BookingController.class);
     BookingService bookingService;
     GenerateResponse generateResponse;
+
+    @PostMapping("booking/autoAssignSlotsToUser")
+    public ResponseEntity<Response<List<Booking>>>autoAssignSlotsToUsers(@RequestBody AutoAssignRequest autoAssignRequest) throws Exception{
+        logger.info("Automatically assigning slots for users");
+        List<Booking> bookings = bookingService.autoAssignSlotsToUsers(autoAssignRequest);
+        return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_AUTO_ASSIGNED_SLOTS_TO_USERS,StatusCodes.SUCCESS,bookings,HttpStatus.ACCEPTED);
+    }
 
     @PostMapping("booking/assignSlotsToUser")
     public ResponseEntity<Response<List<Booking>>> assignSlotsToUser(@RequestBody BookingRequest bookingRequest

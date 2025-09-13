@@ -26,6 +26,21 @@ public class ParkingAreaServieImpl implements ParkingAreaService{
     ParkingAreaRepository parkingAreaRepository;
     UserRepository userRepository;
     SlotRepository slotRepository;
+
+    @Override
+    public ParkingArea changeAdmin(int parkingAreaId, int newAdminId) throws ParkingSlotException {
+        ParkingArea parkingArea= null;
+        try {
+            parkingArea = parkingAreaRepository.findById(parkingAreaId).orElseThrow(()->new ParkingSlotException(StatusCodes.UNABLE_TO_FIND_PARKING_AREA));
+            parkingArea.setAdminId(newAdminId);
+            parkingArea = parkingAreaRepository.save(parkingArea);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new ParkingSlotException(StatusCodes.CHANGING_ADMIN_FAILED);
+        }
+        return parkingArea;
+    }
+
     @Override
     public ParkingArea createParkingArea(ParkingArea parkingArea) throws ParkingSlotException {
         try {

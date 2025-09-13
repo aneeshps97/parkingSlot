@@ -1,5 +1,6 @@
 package com.example.parkingslot.service;
 
+import com.example.parkingslot.entity.AutoAssignRequest;
 import com.example.parkingslot.entity.Booking;
 import com.example.parkingslot.entity.BookingRequest;
 import com.example.parkingslot.exceptionhandler.ParkingSlotException;
@@ -17,6 +18,7 @@ public interface BookingService {
     List<Booking> getBookingForParkingArea(int parkingAreaId) throws ParkingSlotException;
     List<Booking> assignSlotsToUser(BookingRequest bookingRequest) throws ParkingSlotException;
     List<Booking> removeBooking(int bookingId) throws ParkingSlotException;
+    List<Booking> autoAssignSlotsToUsers(AutoAssignRequest autoAssignRequest) throws ParkingSlotException;
 
 
 }
