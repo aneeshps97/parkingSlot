@@ -9,6 +9,7 @@ import com.example.parkingslot.exceptionhandler.ParkingSlotException;
 import java.util.List;
 
 public interface ParkingAreaService {
+    public ParkingArea changeAdmin(int parkingAreaId,int newAdminId) throws ParkingSlotException;
     public ParkingArea createParkingArea(ParkingArea parkingArea) throws ParkingSlotException;
     public ParkingArea addSlotsToParkingArea(int parkingAreaId,List<Slot> slots) throws ParkingSlotException;
     public ParkingArea addUsersToParkingArea(int ParkingAreaId, List<Integer> userIds) throws ParkingSlotException;

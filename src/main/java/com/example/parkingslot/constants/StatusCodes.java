@@ -45,4 +45,8 @@ public final class StatusCodes {
     public static final int UNABLE_TO_UPDATE_STATUS_CODES = 137;
     public static final int STATUS_CODE_UPDATE_SUCCESS = 138;
     public static final int UNABLE_TO_FIND_STATUS_CODE = 139;
+    public static final int SUCCESSFULLY_AUTO_ASSIGNED_SLOTS_TO_USERS = 140;
+    public static final int AUTO_ASSIGNING_FAILED = 141;
+    public static final int CHANGING_ADMIN_FAILED = 142;
+    public static final int CHANGING_ADMIN_SUCCESS = 143;
 }
