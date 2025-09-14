@@ -20,4 +20,16 @@ public class AutoAssignRequest {
     String startDate;
     String endDate;
     int frequency;
+    @Override
+    public String toString() {
+        return "AutoAssignRequest{" +
+                "parkingAreaId=" + parkingAreaId +
+                ", UserIds=" + UserIds +
+                ", SlotIds=" + SlotIds +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", frequency=" + frequency +
+                '}';
+    }
+
 }

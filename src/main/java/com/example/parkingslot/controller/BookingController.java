@@ -26,7 +26,8 @@ public class BookingController {
 
     @PostMapping("booking/autoAssignSlotsToUser")
     public ResponseEntity<Response<List<Booking>>>autoAssignSlotsToUsers(@RequestBody AutoAssignRequest autoAssignRequest) throws Exception{
-        logger.info("Automatically assigning slots for users");
+        logger.info("Automatically assigning slots for users::{}",autoAssignRequest.toString()
+        );
         List<Booking> bookings = bookingService.autoAssignSlotsToUsers(autoAssignRequest);
         return generateResponse.formatResponse(StatusCodes.SUCCESSFULLY_AUTO_ASSIGNED_SLOTS_TO_USERS,StatusCodes.SUCCESS,bookings,HttpStatus.ACCEPTED);
     }
